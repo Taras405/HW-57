@@ -8,14 +8,14 @@ logItems('Mango', 'Poly', 'Ajax');
 
 
 
-// const calculateEngravingPrice = function (message, pricePerWord = 10) {
-//     const word = message.split(' ');
-//     const totalPrice = message.length * pricePerWord;
-//     console.log(totalPrice);
-//     return totalPrice;
-// };
+const calculateEngravingPrice = function (message, pricePerWord = 10) {
+    const word = message.split(' ');
+    const totalPrice = message.length * pricePerWord;
+    console.log(totalPrice);
+    return totalPrice;
+};
 
-// calculateEngravingPrice(prompt('Введіть текст для гравіювання', ''));
+calculateEngravingPrice(prompt('Введіть текст для гравіювання', ''));
 
 
 
@@ -53,11 +53,63 @@ let input;
 const numbers = [];
 let total = 0;
 
-// const saveNumbers = function (numbers) {
+while (true) {
+    input = prompt('Введіть число', '');
 
-// };
+    if (input === null) {
+        break;
+    }
 
-console.log(input(prompt('Введіть число', '')));
-numbers = input;
-console.log(numbers);
+    if (isNaN(input)) {
+        alert('Було введено не число, введіть число');
+        continue;
+    }
+    numbers.push(Number(input));
+}
 
+if (numbers.length > 0) {
+    for (const number of numbers) {
+        total += number;
+    }
+    console.log(`Загальна сума чисел ${total}`);
+}
+
+
+
+const logins = [];
+
+const isLoginValid = function (login) {
+    return login.length >= 4 && login.length <= 16;
+};
+
+const isLoginUnique = function (allLogins, login) {
+    return !allLogins.includes(login);
+};
+
+const addLogin = function (allLogins, login) {
+    if (!isLoginValid(login)) {
+        alert('Введіть логін від 4 до 16 символів');
+        return;
+    }
+    if (!isLoginUnique(allLogins, login)) {
+        alert('Цей логін вже використовується');
+        return;
+
+    }
+
+    allLogins.push(login);
+    alert('Логін доданий');
+
+};
+
+while (true) {
+    const input = prompt('Введіть логін:', '');
+
+    if (input === null) {
+        break;
+    }
+
+    addLogin(logins, input);
+}
+
+console.table(logins);
